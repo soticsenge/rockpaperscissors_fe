@@ -1,0 +1,20 @@
+<div class="chat-messages">
+  <div class="chat-messages-show-container">
+    <div class="chat-messages-show-list">
+      <div *ngFor="let msg of messages">{{msg}}</div>
+    </div>
+  </div>
+  <div class="chat-messages-create-container">
+    <button class="chat-messages-create-button" (click)="SendMessage('R')"> Send Rock</button>
+    <button class="chat-messages-create-button" (click)="SendMessage('P')"> Send Paper</button>
+    <button class="chat-messages-create-button" (click)="SendMessage('S')"> Send Scissors</button>
+  </div>
+  <div class="chat-messages-create-container">
+    <button class="chat-messages-create-button" (click)="CreateGame()">Create Game</button>
+    <button class="chat-messages-create-button" (click)="JoinGame()">Join Game</button>
+    <label>
+      <input [value]="gameIdInput" (change)="setGameId($event)"/>
+    </label>
+  </div>
+
+</div>
