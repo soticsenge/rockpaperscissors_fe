@@ -15,17 +15,19 @@ export type GameResultResponse = {
 } & Response;
 
 @Component({
-  selector: 'app-chat-inbox',
-  templateUrl: './chat-inbox.component.html',
-  styleUrls: ['./chat-inbox.component.scss']
+  selector: 'app-rps-inbox',
+  templateUrl: './rps-inbox.component.html',
+  styleUrls: ['./rps-inbox.component.scss']
 })
 
-export class ChatInboxComponent implements OnInit {
+export class RpsInboxComponent implements OnInit {
   socketService: MessageService;
   playerId = '';
   gameIdInput = '';
   gameId: string;
   messages: string[] = [];
+  createdOrJoinedGame = false;
+  joinInProgress = false;
 
   constructor(socket: MessageService) {
     this.socketService = socket;
@@ -48,7 +50,7 @@ export class ChatInboxComponent implements OnInit {
               JSON.stringify(msg.moves[(this.playerId.startsWith('player1') ? 'player2_' : 'player1_') + this.gameId])];
             if (msg.winner === this.playerId) {
               this.messages = [...this.messages, 'Congratulations, you won!'];
-            } else if(msg.winner === 'draw') {
+            } else if (msg.winner === 'draw') {
               this.messages = [...this.messages, 'It\'s a draw'];
             } else {
               this.messages = [...this.messages, 'You lost this game, maybe next time.'];
@@ -96,14 +98,22 @@ export class ChatInboxComponent implements OnInit {
   }
 
   CreateGame() {
+    this.createdOrJoinedGame = true;
     this.socketService.send(JSON.stringify({messageType: 'createGameRequest'}));
   }
 
+  OnJoinButton() {
+    this.joinInProgress = true;
+  }
+
+  CancelJoin() {
+    this.joinInProgress = false;
+  }
+
   JoinGame() {
+    this.createdOrJoinedGame = true;
     this.messages = [...this.messages, 'Joined to game. Please select your next move.'];
     this.gameId = this.gameIdInput;
     this.playerId = 'player2' + '_' + this.gameId;
   }
-
-
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {Observable, Subject, timer} from 'rxjs';
-import {delayWhen, retryWhen, tap} from "rxjs/operators";
+import {delayWhen, retryWhen, tap} from 'rxjs/operators';
 
 @Injectable()
 export class MessageService {

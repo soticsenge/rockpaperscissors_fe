@@ -1,0 +1,23 @@
+<div class="rps-messages">
+  <div class="rps-messages-show-container">
+    <div class="rps-messages-show-list">
+      <div *ngFor="let msg of messages">{{msg}}</div>
+    </div>
+  </div>
+  <div class="rps-messages-create-container" *ngIf="createdOrJoinedGame">
+    <button class="rps-messages-create-button" (click)="SendMessage('R')"> Send Rock</button>
+    <button class="rps-messages-create-button" (click)="SendMessage('P')"> Send Paper</button>
+    <button class="rps-messages-create-button" (click)="SendMessage('S')"> Send Scissors</button>
+  </div>
+  <div class="rps-messages-create-container" *ngIf="!createdOrJoinedGame && !joinInProgress">
+    <button class="rps-messages-create-button" (click)="CreateGame()">Create Game</button>
+    <button class="rps-messages-create-button" (click)="OnJoinButton()">Join Game</button>
+  </div>
+
+  <div class="rps-messages-create-container" *ngIf="!createdOrJoinedGame && joinInProgress">
+    <input class="rps-messages-create-input" [value]="gameIdInput" (change)="setGameId($event)"/>
+    <button class="rps-messages-create-button" (click)="JoinGame()">Join</button>
+    <button class="rps-messages-create-button" (click)="CancelJoin()">Cancel</button>
+  </div>
+
+</div>

@@ -3,9 +3,9 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ChatInboxComponent} from './chat-inbox/chat-inbox.component';
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {MessageService} from './socket.service';
+import {RpsInboxComponent} from './rps-inbox/rps-inbox.component';
 
 const config: SocketIoConfig = { url: 'http://127.0.0.1:8080/events/', options: { path: '', query: {} } };
 
@@ -13,7 +13,7 @@ const config: SocketIoConfig = { url: 'http://127.0.0.1:8080/events/', options: 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatInboxComponent
+    RpsInboxComponent
   ],
   imports: [
     BrowserModule,
